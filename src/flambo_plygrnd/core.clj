@@ -34,6 +34,9 @@
 
   )
 
+(def source-path "Downloads/kaggle/train.gz")
+(def source-path "Downloads/kaggle/test.gz")
+
 (comment
 
   (let [conf (-> (conf/spark-conf)
@@ -44,7 +47,7 @@
       sc conf
       (let [scon (sql/sql-context sc)
             csv-data (sql/read-csv scon
-                                   "/Users/halit/Downloads/kaggle/test.gz"
+                                   source-path
                                    :header true)
             ]
         (-> csv-data
@@ -69,7 +72,7 @@
       sc conf
       (let [scon (sql/sql-context sc)
             csv-data (sql/read-csv scon
-                                   "/Users/halit/Downloads/kaggle/train.gz"
+                                   source-path
                                    :header true)
             ]
         (-> csv-data
